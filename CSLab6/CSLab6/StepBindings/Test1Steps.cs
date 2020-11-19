@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using System.Threading;
 using TechTalk.SpecFlow;
@@ -9,7 +10,6 @@ namespace CSLab6.StepBindings
     public class Test1Steps
     {
         private IWebDriver driver;
-
         private readonly By _signUpButton = By.XPath("//a[text()=' Sign Up ']");
         private readonly By _inputButtonName = By.XPath("//div[@id='myModal2']/div/div/div[@class='modal-body modal-body-sub_agile']/div/form/div/input[@name='Name']");
         private readonly By _inputButtonEmail = By.XPath("//div[@id='myModal2']/div/div/div[@class='modal-body modal-body-sub_agile']/div/form/div/input[@name='Email']");
@@ -30,7 +30,7 @@ namespace CSLab6.StepBindings
             var signUp = driver.FindElement(_signUpButton);
             signUp.Click();
         }
-        
+
         [Given(@"I have entered my Name")]
         public void GivenIHaveEnteredMyName()
         {
@@ -40,7 +40,7 @@ namespace CSLab6.StepBindings
             Thread.Sleep(400);
             login.SendKeys("Cristian");
         }
-        
+
         [Given(@"I have entered my Email")]
         public void GivenIHaveEnteredMyEmail()
         {
@@ -48,7 +48,7 @@ namespace CSLab6.StepBindings
             email.Click();
             email.SendKeys("crisionas@gmail.com");
         }
-        
+
         [Given(@"I have entered my Password")]
         public void GivenIHaveEnteredMyPassword()
         {
@@ -59,7 +59,7 @@ namespace CSLab6.StepBindings
             confpass.Click();
             confpass.SendKeys("test123");
         }
-        
+
         [When(@"I press Sign Up button")]
         public void WhenIPressSignUpButton()
         {
@@ -67,11 +67,15 @@ namespace CSLab6.StepBindings
             var signupbutton = driver.FindElement(_inputButtonSignup);
             signupbutton.Click();
         }
-        
+
         [Then(@"My account should be successful registered\.")]
         public void ThenMyAccountShouldBeSuccessfulRegistered_()
         {
-            ScenarioContext.Current.Pending();
+            string mainUrl = "https://loving-hermann-e2094b.netlify.app/";
+            if (driver.Url != mainUrl)
+                Assert.Fail();
+            else
+                Assert.Pass();
         }
     }
 }

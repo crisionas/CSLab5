@@ -38,7 +38,11 @@ namespace CSLab6.StepBindings
         [Then(@"The searched item appears\.")]
         public void ThenTheSearchedItemAppears_()
         {
-            Assert.Pass();
+            string mainUrl = "https://loving-hermann-e2094b.netlify.app/";
+            if (driver.Url != mainUrl)
+                Assert.Fail();
+            else
+                Assert.Pass();
         }
     }
 }

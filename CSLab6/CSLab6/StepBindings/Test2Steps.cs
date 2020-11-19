@@ -58,7 +58,11 @@ namespace CSLab6.StepBindings
         [Then(@"My account should be successful logged\.")]
         public void ThenMyAccountShouldBeSuccessfulLogged_()
         {
-            Assert.Pass();
+            string mainUrl = "https://loving-hermann-e2094b.netlify.app/";
+            if (driver.Url != mainUrl)
+                Assert.Fail();
+            else
+                Assert.Pass();
         }
     }
 }
