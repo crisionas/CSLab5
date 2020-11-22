@@ -1,6 +1,9 @@
-﻿Feature: Test1
+﻿@setup_feature
+Feature: Test1
 
-@Smoke
+Feature: Name Of Your Feature
+
+@setup_scenario
 Scenario: User is able to Sign Up
 	Given I have clicked on Sign Up button
 	And I have entered my Name
